@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
 const initializeProducts = [
-  { id: 0, name: 'product1', price: 100.0 },
-  { id: 1, name: 'product2', price: 200.0 },
+  { id: 0, name: 'product1', price: 100.00 },
+  { id: 1, name: 'product2', price: 200.00 },
 ];
 
 const App = () => {
