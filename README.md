@@ -10,5 +10,8 @@ https://github.com/TryCatchLearn/Restore
 * Bracket Pair Colorizer 2
 * Auto Rename Tag
 * SQLite
-* ---------------
+---------------
 * Prettier - Code formatter
+
+
+## 
