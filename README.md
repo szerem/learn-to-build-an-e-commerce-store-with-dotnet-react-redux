@@ -28,3 +28,11 @@ dotnet ef database update
 dotnet ef migrations add CreateProduct --project .\API\ -o Data\Migrations
 dotnet ef database update --project .\API\
 
+## React 
+* Material UI 5
+* Axios
+* Redux
+* Forms (React-hook-form)
+* React-Router
+
+npx create-react-app client --template typescript --use-npm 
