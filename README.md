@@ -14,4 +14,17 @@ https://github.com/TryCatchLearn/Restore
 * Prettier - Code formatter
 
 
-## 
+## Microsoft.EntityFrameworkCore
+
+dotnet ef migrations add CreateProduct --project .\API\ -o .\API\Data\Migrations
+
+
+STOP dotnet watch run !!!!!
+cd API
+dotnet ef migrations add CreateProduct -o Data/Migrations
+dotnet ef database update 
+
+
+dotnet ef migrations add CreateProduct --project .\API\ -o Data\Migrations
+dotnet ef database update --project .\API\
+
