@@ -139,6 +139,8 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
+[Tt]emp/
+[Tt]mp/
 
 # Visual Studio 2015
 .vs/
