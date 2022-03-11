@@ -2,13 +2,13 @@
 https://github.com/TryCatchLearn/Restore
 
 ## vscode extensions 
-C#
-C# Extensions
-Code Spell Checker
-Material Icon Theme
-NuGet Gallery
-Bracket Pair Colorizer 2
-Auto Rename Tag
-SQLite
----------------
-Prettier - Code formatter
+* C#
+* C# Extensions
+* Code Spell Checker
+* Material Icon Theme
+* NuGet Gallery
+* Bracket Pair Colorizer 2
+* Auto Rename Tag
+* SQLite
+* ---------------
+* Prettier - Code formatter
