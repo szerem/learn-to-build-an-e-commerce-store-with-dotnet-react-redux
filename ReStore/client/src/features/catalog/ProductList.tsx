@@ -1,4 +1,4 @@
-import { List } from '@mui/material';
+import { Grid } from '@mui/material';
 import React from 'react';
 import { Product } from '../../app/model/Product';
 import ProductCard from './ProductCard';
@@ -9,11 +9,13 @@ interface Props {
 
 const ProductList: React.FC<Props> = ({ products }) => {
   return (
-    <List>
+    <Grid container spacing={4}>
       {products.map((product, index) => (
-        <ProductCard index={index} product={product}></ProductCard>
+        <Grid item xs={4} key={product.id}>
+          <ProductCard index={index} product={product}></ProductCard>
+        </Grid>
       ))}
-    </List>
+    </Grid>
   );
 };
 
