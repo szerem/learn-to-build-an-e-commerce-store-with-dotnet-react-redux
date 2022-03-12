@@ -11,7 +11,7 @@ interface Props {
 const Catalog: React.FC<Props> = ({ products, addProduct }) => {
   return (
     <>
-      <ProductList products={products}></ProductList>
+      <ProductList products={products} />
       <Button variant="contained" onClick={addProduct}>
         Add product
       </Button>
