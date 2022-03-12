@@ -36,3 +36,6 @@ dotnet ef database update --project .\API\
 * React-Router
 
 npx create-react-app client --template typescript --use-npm 
+
+npm install @mui/material @emotion/react @emotion/styled
+npm install @mui/icons-material

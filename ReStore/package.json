@@ -1,0 +1,8 @@
+{
+  "name": "ReStore",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "cd .\\client\\ & npm run dev"
+  }
+}

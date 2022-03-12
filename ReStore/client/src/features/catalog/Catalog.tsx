@@ -1,3 +1,11 @@
+import {
+  Avatar,
+  Button,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+} from '@mui/material';
 import React from 'react';
 import { Product } from '../../app/model/Product';
 
@@ -9,14 +17,19 @@ interface Props {
 const Catalog: React.FC<Props> = ({ products, addProduct }) => {
   return (
     <>
-      <ul>
+      <List>
         {products.map((item, index) => (
-          <li key={item.id}>
-            {index + 1}) {item.name} - {item.price}
-          </li>
+          <ListItem key={item.id}>
+            <ListItemAvatar>
+              <Avatar src={item.pictureUrl} />
+            </ListItemAvatar>
+            <ListItemText>
+              {index + 1}) {item.name} - {item.price}
+            </ListItemText>
+          </ListItem>
         ))}
-      </ul>
-      <button onClick={addProduct}>Add product</button>
+      </List>
+      <Button variant='contained' onClick={addProduct}>Add product</Button>
     </>
   );
 };
