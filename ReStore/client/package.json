@@ -27,7 +27,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "npx concurrently -n api,web -k \"dotnet watch run --project ..\\API\" \"npm run start\""
+    "dev": "npx concurrently -n api,web -k \"dotnet watch run --project ../API\" \"npm run start\""
   },
   "eslintConfig": {
     "extends": [
