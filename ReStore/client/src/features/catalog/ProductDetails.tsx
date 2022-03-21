@@ -16,6 +16,7 @@ import LoadingComponents from '../../app/layout/LoadingComponents';
 import { Product } from '../../app/model/Product';
 
 const ProductDetails: React.FC = () => {
+
   const { id } = useParams<{ id: string }>();
   const [product, setProduct] = useState<Product | undefined>(undefined);
   const [loading, setLoading] = useState<boolean>(true);
@@ -26,6 +27,7 @@ const ProductDetails: React.FC = () => {
       .finally(() => setLoading(false));
   }, [id]);
 
+  // debugger;
   if (loading) return <LoadingComponents message='Loading product...'/>
   if (!product) return <NotFound />;
 
