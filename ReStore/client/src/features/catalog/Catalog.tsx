@@ -1,34 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import agent from '../../app/api/agent';
+import LoadingComponents from '../../app/layout/LoadingComponents';
 import { Product } from '../../app/model/Product';
 import ProductList from './ProductList';
 
-interface Props {
-}
+interface Props {}
 
 const Catalog: React.FC<Props> = () => {
-
-
   const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     agent.Catalog.list()
       .then((products) => setProducts(products))
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+      .finally(() => setLoading(false));
   }, []);
 
-  const addProduct = () => {
-    setProducts((prev) => [
-      ...products,
-      {
-        id: prev.length + 1,
-        name: `product ${prev.length + 1}`,
-        price: 300.0,
-        brand: 'same',
-        description: '',
-      } as Product,
-    ]);
-  };
+  if (loading) return <LoadingComponents message="Loading products..." />;
 
   return (
     <>
