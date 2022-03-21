@@ -45,3 +45,16 @@ React & Redux & Axios
 npm install react-router-dom@5.3.0 @types/react-router-dom@5.3.2 
 
 npm install axios
+
+
+# Middleware error handler 
+200 ok 
+300 redirection
+400 client error 
+    -- toast notifications
+    -- console errors 
+    -- error pages
+    -- validation errors 
+500 server error 
+
+npm i react-toastify
