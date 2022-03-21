@@ -2,6 +2,8 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import { history } from '../..';
 
+const sleep = () => new Promise(resolver => setTimeout(resolver, 500));
+
 axios.defaults.baseURL = 'http://localhost:5000/api/';
 
 const responseBody = (response: AxiosResponse) => response.data;
@@ -11,7 +13,8 @@ axios.interceptors.request.use((request) => {
   return request;
 });
 axios.interceptors.response.use(
-  (response) => {
+  async (response) => {
+    await sleep();
     return response;
   },
   (error: AxiosError) => {
