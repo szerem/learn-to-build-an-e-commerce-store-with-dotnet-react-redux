@@ -8,9 +8,10 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import agent from '../../app/api/agent';
+import NotFound from '../../app/errors/NotFound';
 import { Product } from '../../app/model/Product';
 
 const ProductDetails: React.FC = () => {
@@ -19,18 +20,13 @@ const ProductDetails: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    console.log(`useEffect http://localhost:5000/api/products/${id} ...`);
-    axios
-      .get(`http://localhost:5000/api/products/${id}`)
-      .then((response) => {
-        setProduct(response.data);
-      })
-      .catch((err) => console.error(err))
+    agent.Catalog.details(+id)
+      .then(setProduct)
       .finally(() => setLoading(false));
   }, [id]);
 
   if (loading) return <h3>Loading...</h3>;
-  if (!product) return <h3>Product not found</h3>;
+  if (!product) return <NotFound />;
 
   return (
     <Grid container spacing={6}>
