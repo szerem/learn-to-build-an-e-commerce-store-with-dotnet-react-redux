@@ -43,6 +43,9 @@ npm install @mui/icons-material
 
 React & Redux & Axios
 npm install react-router-dom@5.3.0 @types/react-router-dom@5.3.2 
+rm .\node_modules\
+rm package-lock.json 
+npm install
 
 npm install axios
 

@@ -37,7 +37,8 @@ const App = () => {
       <Header darkMode={darkMode} switchDarkMode={switchDarkMode} />
       <Container>
         <Switch>
-          <Route path="/catalog" component={Catalog} />
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/catalog" component={Catalog} />
           <Route path="/catalog/:id" component={ProductDetails} />
           <Route path="/about" component={AboutPage} />
           <Route path="/contact" component={ContactPage} />
