@@ -66,3 +66,4 @@ npm i react-toastify
 # Using React in Visual Studio Code
 https://code.visualstudio.com/docs/nodejs/reactjs-tutorial
 
+dotnet ef migrations add CreateBasket --project .\API\ -o .\Data\Migrations
