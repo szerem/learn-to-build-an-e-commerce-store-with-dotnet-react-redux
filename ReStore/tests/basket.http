@@ -2,7 +2,7 @@
 ### %userprofile%\.rest-client
 
 ###
-GET http://localhost:5000/api/Basket HTTP/1.1
+GET http://localhost:5000/api/Basket/ HTTP/1.1
 content-type: application/json
 
 
