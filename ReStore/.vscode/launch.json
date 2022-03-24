@@ -30,7 +30,8 @@
     {
       "name": ".NET Core Attach",
       "type": "coreclr",
-      "request": "attach"
+      "request": "attach",
+      "processName":"API.exe"
     },    
     {
       "type": "pwa-chrome",
