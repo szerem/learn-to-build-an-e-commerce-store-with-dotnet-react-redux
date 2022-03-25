@@ -11,7 +11,7 @@ import {
   Box
 } from '@mui/material';
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 interface Props {
   darkMode: boolean;
@@ -85,7 +85,7 @@ const Header: React.FC<Props> = ({ darkMode, switchDarkMode }) => {
         </Box>
         {/* 3 group right  */}
         <Box display='flex' alignItems='center'>
-          <IconButton size="large" sx={{ color: 'inherits' }}>
+          <IconButton component={Link} to='/basket' size="large" sx={{ color: 'inherits' }}>
             <Badge badgeContent={4} color="secondary">
               <ShoppingCart />
             </Badge>
