@@ -8,16 +8,29 @@ import {
   CardMedia,
   Typography,
 } from '@mui/material';
-import React from 'react';
+import { LoadingButton } from '@mui/lab';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import agent from '../../app/api/agent';
 import { Product } from '../../app/model/Product';
-
 interface Props {
   index: number;
   product: Product;
 }
 
 const ProductCard: React.FC<Props> = ({ index, product }) => {
+  const [loading, setLoading] = useState(false);
+
+  // if (loading) return <LoadingComponents message="Loading products..." />;
+
+  const handleAddItem = (productId: number) => {
+    setLoading(true);
+    console.log(`productId=${productId}`);
+    agent.Basket.addItem(productId)
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
+  };
+
   return (
     <Card>
       <CardHeader
@@ -33,7 +46,11 @@ const ProductCard: React.FC<Props> = ({ index, product }) => {
       />
       <CardMedia
         component="img"
-        sx={{ height: 140, backgroundSize:'contain', bgcolor: 'primary.light'}}
+        sx={{
+          height: 140,
+          backgroundSize: 'contain',
+          bgcolor: 'primary.light',
+        }}
         image={product.pictureUrl}
         title={product.name}
       />
@@ -46,8 +63,12 @@ const ProductCard: React.FC<Props> = ({ index, product }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Add to card</Button>
-        <Button component={Link} to={`/catalog/${product.id}`} size="small">Learn More</Button>
+        <LoadingButton loading={loading} size="small" onClick={() => handleAddItem(product.id)}>
+          Add to card
+        </LoadingButton>
+        <Button component={Link} to={`/catalog/${product.id}`} size="small">
+          Learn More
+        </Button>
       </CardActions>
     </Card>
   );

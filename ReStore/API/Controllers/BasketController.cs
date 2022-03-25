@@ -90,12 +90,12 @@ namespace API.Controllers
 
         private async Task<Basket> CreateBasket()
         {
-            var bayerId = Guid.NewGuid().ToString();
+            var buyerId = Guid.NewGuid().ToString();
             var cookieOptions = new CookieOptions { IsEssential = true, Expires = DateTime.Now.AddDays(30) };
-            Response.Cookies.Append(_bayerIdKey, bayerId, cookieOptions);
+            Response.Cookies.Append(_bayerIdKey, buyerId, cookieOptions);
             var basket = new Basket
             {
-                BuyerId = bayerId
+                BuyerId = buyerId
             };
 
             await _context.Baskets.AddAsync(basket);
@@ -120,6 +120,11 @@ namespace API.Controllers
                     Quantity = item.Quantity,
                 }).ToList()
             };
+        }
+
+        private string GetBuyerId()
+        {
+            return User.Identity?.Name ?? Request.Cookies["buyerId"];
         }
     }
 }

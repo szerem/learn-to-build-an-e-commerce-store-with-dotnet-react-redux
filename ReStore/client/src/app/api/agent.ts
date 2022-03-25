@@ -2,9 +2,10 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import { history } from '../..';
 
-const sleep = () => new Promise(resolver => setTimeout(resolver, 500));
+const sleep = () => new Promise((resolver) => setTimeout(resolver, 500));
 
 axios.defaults.baseURL = 'http://localhost:5000/api/';
+axios.defaults.withCredentials = true;
 
 const responseBody = (response: AxiosResponse) => response.data;
 
@@ -38,11 +39,11 @@ axios.interceptors.response.use(
       case 404:
         toast.error(data.title);
         break;
-      case 500:        
+      case 500:
         toast.error(data.title);
         history.push({
           pathname: '/server-error',
-          state: {error: data},
+          state: { error: data },
         });
         break;
       default:
@@ -72,8 +73,17 @@ const TestErrors = {
   getValidationError: () => requests.get('buggy/validation-error'),
 };
 
+const Basket = {
+  get: () => requests.get('basket'),
+  addItem: (productId: number, quantity = 1) =>
+    requests.post(`basket?productId=${productId}&quantity=${quantity}`, {}),
+  removeItem: (productId: number, quantity = 1) =>
+    requests.delete(`basket?productId=${productId}&quantity=${quantity}`),
+};
+
 const agent = {
   Catalog,
+  Basket,
   TestErrors,
 };
 
