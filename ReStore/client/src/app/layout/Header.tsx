@@ -22,6 +22,7 @@ const midLinks = [
   { title: 'catalog', path: '/catalog' },
   { title: 'about', path: '/about' },
   { title: 'contact', path: '/contact' },
+  { title: 'checkout', path: '/checkout' },
 ];
 
 const rightLinks = [
@@ -49,7 +50,7 @@ const Header: React.FC<Props> = ({ darkMode, switchDarkMode }) => {
 
   return (
     <AppBar position="static" sx={{ mb: 4 }}>
-      <Toolbar
+      <Toolbar      
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
