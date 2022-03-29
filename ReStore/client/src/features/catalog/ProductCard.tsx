@@ -13,20 +13,22 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import agent from '../../app/api/agent';
 import { Product } from '../../app/model/Product';
+import { useStoreContext } from '../../app/context/StoreContext';
+import { currencyFormat } from '../../app/util/util';
 interface Props {
   index: number;
   product: Product;
 }
 
 const ProductCard: React.FC<Props> = ({ index, product }) => {
+  const { setBasket } = useStoreContext();
   const [loading, setLoading] = useState(false);
-
-  // if (loading) return <LoadingComponents message="Loading products..." />;
 
   const handleAddItem = (productId: number) => {
     setLoading(true);
     console.log(`productId=${productId}`);
     agent.Basket.addItem(productId)
+      .then((basket) => setBasket(basket))
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));
   };
@@ -56,14 +58,18 @@ const ProductCard: React.FC<Props> = ({ index, product }) => {
       />
       <CardContent>
         <Typography gutterBottom color="secondary" variant="h5" component="div">
-          €{(product.price / 100).toFixed(2)}
+          {currencyFormat(product.price)}
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {product.brand} / {product.type}
         </Typography>
       </CardContent>
       <CardActions>
-        <LoadingButton loading={loading} size="small" onClick={() => handleAddItem(product.id)}>
+        <LoadingButton
+          loading={loading}
+          size="small"
+          onClick={() => handleAddItem(product.id)}
+        >
           Add to card
         </LoadingButton>
         <Button component={Link} to={`/catalog/${product.id}`} size="small">

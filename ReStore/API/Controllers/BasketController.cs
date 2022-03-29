@@ -13,7 +13,7 @@ namespace API.Controllers
 
     public class BasketController : BaseApiController
     {
-        private readonly string _bayerIdKey = "bayerId";
+        private readonly string _buyerIdKey = "buyerId";
         private readonly StoreContext _context;
 
         public BasketController(StoreContext context)
@@ -84,7 +84,7 @@ namespace API.Controllers
             return await _context.Baskets
              .Include(i => i.Items)
              .ThenInclude(p => p.Product)
-             .FirstOrDefaultAsync(item => item.BuyerId == Request.Cookies[_bayerIdKey]);
+             .FirstOrDefaultAsync(item => item.BuyerId == Request.Cookies[_buyerIdKey]);
         }
 
 
@@ -92,7 +92,7 @@ namespace API.Controllers
         {
             var buyerId = Guid.NewGuid().ToString();
             var cookieOptions = new CookieOptions { IsEssential = true, Expires = DateTime.Now.AddDays(30) };
-            Response.Cookies.Append(_bayerIdKey, buyerId, cookieOptions);
+            Response.Cookies.Append(_buyerIdKey, buyerId, cookieOptions);
             var basket = new Basket
             {
                 BuyerId = buyerId

@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { useStoreContext } from '../context/StoreContext';
 
 interface Props {
   darkMode: boolean;
@@ -44,6 +45,11 @@ const navStyles = {
 };
 
 const Header: React.FC<Props> = ({ darkMode, switchDarkMode }) => {
+
+  const {basket} = useStoreContext()
+  const itemCount = basket?.items.reduce((sum, item) => sum + item.quantity, 0)
+  
+
   const handleSwitch = (event: React.ChangeEvent<HTMLInputElement>) => {
     switchDarkMode(event.target.checked);
   };
@@ -87,7 +93,7 @@ const Header: React.FC<Props> = ({ darkMode, switchDarkMode }) => {
         {/* 3 group right  */}
         <Box display='flex' alignItems='center'>
           <IconButton component={Link} to='/basket' size="large" sx={{ color: 'inherits' }}>
-            <Badge badgeContent={4} color="secondary">
+            <Badge badgeContent={itemCount} color="secondary">
               <ShoppingCart />
             </Badge>
           </IconButton>
