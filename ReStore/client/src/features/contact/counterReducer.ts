@@ -8,7 +8,21 @@ export interface CounterState {
 
 const initialState: CounterState = {
   data: 42,
-  title: 'ContactPage',
+  title: 'ContactPage with redux toolkit',
+};
+
+
+export const increment = (amount = 1) => {
+  return {
+    type: INCREMENT_COUNTER,
+    payload: amount,
+  };
+};
+export const decrement = (amount = 1) => {
+  return {
+    type: DECREMENT_COUNTER,
+    payload: amount,
+  };
 };
 
 const CounterReducer = (state = initialState, action: any) => {
@@ -16,13 +30,13 @@ const CounterReducer = (state = initialState, action: any) => {
     case INCREMENT_COUNTER:
       return {
         ...state,
-        data: state.data + 1,
+        data: state.data + action.payload,
       };
 
     case DECREMENT_COUNTER:
       return {
         ...state,
-        data: state.data - 1,
+        data: state.data - action.payload,
       };
 
     default:
