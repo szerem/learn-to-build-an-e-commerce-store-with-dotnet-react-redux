@@ -66,3 +66,34 @@ npm i react-toastify
 # Using React in Visual Studio Code
 https://code.visualstudio.com/docs/nodejs/reactjs-tutorial
 
+dotnet ef migrations add CreateBasket --project .\API\ -o .\Data\Migrations
+
+
+
+
+npm install @mui/lab
+
+
+Section 6: Adding the shopping cart feature
+62. Creating the basket entity
+63. EF Relationships
+64. Create a basket controller
+65. Add basket item endpoint logic
+66. Using the debugger to check the add item logic
+67. Shaping the data to return
+68. Removing an item from the basket
+69. Using CreatedAtRoute
+70. Adding the axios methods for the basket
+71. Creating a basket component
+72. Styling the basket page with a table
+73. Using React context to centralise state
+74. App initialisation - fetching the basket on app start
+75. Updating the header with the basket item count
+76. Adding the remove item functionality
+77. Adding specific loading indicators for the buttons
+78. Challenge - Basket Summary
+79. Challenge - Solution
+80. Updating the product detail component to add items to cart part 1
+81. Updating the product detail component to add items to cart part 2
+82. Adding a checkout page
+83. Section 6 Summary

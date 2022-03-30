@@ -103,6 +103,8 @@ dist
 # TernJS port file
 .tern-port
 
+# SQLite 
+*.db-*
 
 # DOTNET 
 *.swp
@@ -146,3 +148,4 @@ msbuild.wrn
 [Tt]emp/
 [Tt]mp/
 *.db
+ReStore/API/store.db-wal
