@@ -102,8 +102,8 @@ Section 6: Adding the shopping cart feature
 84. Section 7 Introduction
 85. Installing and using Redux
     npm install redux react-redux
-
 86. Redux actions
+
 87. Action Creators
 88. Using Redux Toolkit
 89. Using redux dev tools
