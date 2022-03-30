@@ -8,9 +8,9 @@ import {
   Switch,
   Toolbar,
   Typography,
-  Box
+  Box,
 } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useStoreContext } from '../context/StoreContext';
 
@@ -45,10 +45,8 @@ const navStyles = {
 };
 
 const Header: React.FC<Props> = ({ darkMode, switchDarkMode }) => {
-
-  const {basket} = useStoreContext()
-  const itemCount = basket?.items.reduce((sum, item) => sum + item.quantity, 0)
-  
+  const { basket } = useStoreContext();
+  const itemCount = basket?.items.reduce((sum, item) => sum + item.quantity, 0);
 
   const handleSwitch = (event: React.ChangeEvent<HTMLInputElement>) => {
     switchDarkMode(event.target.checked);
@@ -56,7 +54,7 @@ const Header: React.FC<Props> = ({ darkMode, switchDarkMode }) => {
 
   return (
     <AppBar position="static" sx={{ mb: 4 }}>
-      <Toolbar      
+      <Toolbar
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
@@ -68,7 +66,7 @@ const Header: React.FC<Props> = ({ darkMode, switchDarkMode }) => {
          -> System props 
           -> https://mui.com/system/properties/
         */}
-        <Box display='flex' alignItems='center'>
+        <Box display="flex" alignItems="center">
           <Typography
             variant="h6"
             component={NavLink}
@@ -81,7 +79,7 @@ const Header: React.FC<Props> = ({ darkMode, switchDarkMode }) => {
           <Switch color="default" checked={darkMode} onChange={handleSwitch} />
         </Box>
         {/* 2 group mid */}
-        <Box display='flex' alignItems='center'>
+        <Box display="flex" alignItems="center">
           <List sx={{ display: 'flex' }}>
             {midLinks.map(({ title, path }) => (
               <ListItem component={NavLink} to={path} key={path} sx={navStyles}>
@@ -91,8 +89,13 @@ const Header: React.FC<Props> = ({ darkMode, switchDarkMode }) => {
           </List>
         </Box>
         {/* 3 group right  */}
-        <Box display='flex' alignItems='center'>
-          <IconButton component={Link} to='/basket' size="large" sx={{ color: 'inherits' }}>
+        <Box display="flex" alignItems="center">
+          <IconButton
+            component={Link}
+            to="/basket"
+            size="large"
+            sx={{ color: 'inherits' }}
+          >
             <Badge badgeContent={itemCount} color="secondary">
               <ShoppingCart />
             </Badge>

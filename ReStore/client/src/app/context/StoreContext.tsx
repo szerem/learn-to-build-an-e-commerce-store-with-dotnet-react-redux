@@ -20,24 +20,21 @@ export const useStoreContext = () => {
   return context;
 };
 
-// export const StoreProvider = ({ children }: PropsWithChildren<any>) => {
 export function StoreProvider({ children }: PropsWithChildren<any>) {
   const [basket, setBasket] = useState<Basket | null>(null);
 
-  const removeItem = (productId: number, quantity: number) => {
+  function removeItem(productId: number, quantity: number) {
     if (!basket) return;
     const items = [...basket.items];
-    const index = items.findIndex((i) => i.productId === productId);
-    if (index >= 0) {
-      items[index].quantity -= quantity;
-      if (!(items[index].quantity > 0)) {
-        items.splice(index, 1);
-        setBasket((prevState) => {
-          return { ...prevState!, items };
-        });
-      }
+    const itemIndex = items.findIndex((i) => i.productId === productId);
+    if (itemIndex >= 0) {
+      items[itemIndex].quantity -= quantity;
+      if (items[itemIndex].quantity === 0) items.splice(itemIndex, 1);
+      setBasket((prevState) => {
+        return { ...prevState!, items };
+      });
     }
-  };
+  }
 
   return (
     <StoreContext.Provider value={{ basket, setBasket, removeItem }}>

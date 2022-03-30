@@ -20,7 +20,7 @@ import { Product } from '../../app/model/Product';
 import { currencyFormat } from '../../app/util/util';
 
 const ProductDetails: React.FC = () => {
-  const { basket } = useStoreContext();
+  const { basket, setBasket, removeItem } = useStoreContext();
   const { id } = useParams<{ id: string }>();
   const [product, setProduct] = useState<Product | undefined>(undefined);
   const [loading, setLoading] = useState<boolean>(true);
@@ -33,7 +33,33 @@ const ProductDetails: React.FC = () => {
     agent.Catalog.details(+id)
       .then(setProduct)
       .finally(() => setLoading(false));
-  }, [id]);
+  }, [id, item]);
+
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => {
+    const value = +event.target.value;
+    if (value > 0) {
+      setQuantity(value);
+    }
+  };
+
+  const handleUpdateCart = () => {
+    setSubmitting(true);
+    if (!item || quantity > item.quantity) {
+      const updatedQuantity = item ? quantity - item.quantity : quantity;
+      agent.Basket.addItem(product?.id!, updatedQuantity)
+        .then((basket) => setBasket(basket))
+        .catch(console.error)
+        .finally(() => setSubmitting(false));
+    } else {
+      const updatedQuantity = item.quantity - quantity;
+      agent.Basket.removeItem(product?.id!, updatedQuantity)
+        .then(() => removeItem(product?.id!, updatedQuantity))
+        .catch(console.error)
+        .finally(() => setSubmitting(false));
+    }
+  };
 
   // debugger;
   if (loading) return <LoadingComponents message="Loading product..." />;
@@ -88,13 +114,20 @@ const ProductDetails: React.FC = () => {
               label="Quantity in Cart"
               fullWidth
               value={quantity}
+              onChange={handleInputChange}
             />
           </Grid>
           <Grid item xs={6}>
-            <LoadingButton sx={{ heigh: '55px' }}
-              color='primary'
-              size='large'
-              variant='contained'
+            <LoadingButton
+              disabled={
+                item?.quantity === quantity || (!item && quantity === 0)
+              }
+              loading={submitting}
+              onClick={handleUpdateCart}
+              sx={{ height: '55px' }}
+              color="primary"
+              size="large"
+              variant="contained"
               fullWidth
             >
               {item ? 'Update Quantity' : 'Add to Cart'}
