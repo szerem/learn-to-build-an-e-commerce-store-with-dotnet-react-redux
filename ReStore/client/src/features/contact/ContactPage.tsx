@@ -1,50 +1,39 @@
-import { Typography, Button } from '@mui/material';
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  CounterState,
-  decrement,
-  DECREMENT_COUNTER,
-  increment,
-  INCREMENT_COUNTER,
-} from './counterReducer';
+import { Button, ButtonGroup, Typography } from '@mui/material';
+import { useAppDispatch, useAppSelector } from '../../app/store/configureStore';
+import { decrement, increment } from './counterSlice';
 
 const ContactPage = () => {
-  const dispatch = useDispatch();
-  const { data, title } = useSelector((state: CounterState) => state);
+  const dispatch = useAppDispatch();
+  const { data, title } = useAppSelector((state) => state.counter);
 
   return (
     <>
       <Typography variant="h2">{title}</Typography>
       <Typography variant="h5">The data is: {data}</Typography>
-      <Button
-        onClick={() => dispatch({ type: DECREMENT_COUNTER, payload: 1 })}
-        variant="contained"
-        color="error"
-      >
-        DECREMENT BY 1
-      </Button>
-      <Button
-        onClick={() => dispatch({ type: INCREMENT_COUNTER, payload: 1 })}
-        variant="contained"
-        color="primary"
-      >
-        INCREMENT BY 1
-      </Button>
-      <Button
-        onClick={() => dispatch(decrement(5))}
-        variant="contained"
-        color="warning"
-      >
-        DECREMENT BY 5
-      </Button>
-      <Button
-        onClick={() => dispatch(increment(5))}
-        variant="contained"
-        color="info"
-      >
-        INCREMENT BY 5
-      </Button>
+      <ButtonGroup>
+        <Button
+          onClick={() => dispatch(decrement(1))}
+          variant="contained"
+          color="error"
+        >
+          DECREMENT BY 1
+        </Button>
+        <Button
+          onClick={() => dispatch(increment(1))}
+          variant="contained"
+          color="primary"
+        >
+          INCREMENT BY 1
+        </Button>
+
+        <Button
+          onClick={() => dispatch(increment(5))}
+          variant="contained"
+          color="info"
+        >
+          INCREMENT BY 5
+        </Button>
+      </ButtonGroup>
     </>
   );
 };

@@ -104,8 +104,10 @@ Section 6: Adding the shopping cart feature
     npm install redux react-redux
 86. Redux actions
 87. Action Creators
-
 88. Using Redux Toolkit
+
+npm install @reduxjs/toolkit
+
 89. Using redux dev tools
 90. Creating a basket slice
 91. Refactoring the app to use the redux store
