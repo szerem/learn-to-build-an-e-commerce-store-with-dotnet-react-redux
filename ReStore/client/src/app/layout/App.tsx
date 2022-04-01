@@ -19,22 +19,23 @@ import NotFound from '../errors/NotFound';
 import BasketPage from '../../features/basket/BasketPage';
 import CheckoutPage from '../../features/checkout/CheckoutPage';
 import Footer from './Footer';
-import { useStoreContext } from '../context/StoreContext';
 import { getCookie } from '../util/util';
 import agent from '../api/agent';
 import LoadingComponents from './LoadingComponents';
+import { setBasket } from '../../features/basket/basketSlice';
+import { useAppDispatch } from '../store/configureStore';
 
 const App = () => {
   // console.log(`App ${new Date().toISOString()} ...`);
+  const dispatch = useAppDispatch();
 
-  const { setBasket } = useStoreContext();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const buyerId = getCookie('buyerId');
     if (buyerId) {
       agent.Basket.get()
-        .then((basket) => setBasket(basket))
+        .then((basket) => dispatch(setBasket(basket)))
         .catch((err) => console.log(err))
         .finally(() => setLoading(false));
     } else {
