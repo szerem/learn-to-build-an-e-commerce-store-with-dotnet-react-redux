@@ -13,39 +13,17 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import agent from '../../app/api/agent';
 import { useAppDispatch, useAppSelector } from '../../app/store/configureStore';
 import { currencyFormat } from '../../app/util/util';
-import { removeItem, setBasket } from './basketSlice';
+import { addBasketItemAsync, removeBasketItemAsync } from './basketSlice';
 import BasketSummary from './BasketSummary';
 
 interface Props {}
 
 const BasketPage: React.FC<Props> = () => {
   const dispatch = useAppDispatch();
-  const { basket } = useAppSelector(state => state.basket);
-  
-  const [status, setStatus] = useState({
-    loading: false,
-    name: '',
-  });
-
-  const handleAddItem = (productId: number, name: string) => {
-    setStatus({ loading: true, name });
-    agent.Basket.addItem(productId)
-      .then((basket) => dispatch(setBasket(basket)))
-      .catch(console.log)
-      .finally(() => setStatus({ loading: false, name: '' }));
-  };
-  const handleRemoveItem = (productId: number, name: string, quantity = 1) => {
-    setStatus({ loading: true, name });
-    agent.Basket.removeItem(productId, quantity)
-      .then(() => dispatch(removeItem({productId, quantity})))
-      .catch(console.error)
-      .finally(() => setStatus({ loading: false, name: '' }));
-  };
+  const { basket, status } = useAppSelector((state) => state.basket);
 
   if (!basket)
     return <Typography variant="h3"> Your basket is empty</Typography>;
@@ -79,29 +57,29 @@ const BasketPage: React.FC<Props> = () => {
                     <span>{row.name}</span>
                   </Box>
                 </TableCell>
-                <TableCell align="right">
-                  {currencyFormat(row.price)}
-                </TableCell>
+                <TableCell align="right">{currencyFormat(row.price)}</TableCell>
                 <TableCell align="center">
                   <LoadingButton
-                    loading={
-                      status.loading && status.name === `remove${row.productId}`
-                    }
+                    loading={status === `pendingRemoveItem${row.productId}rem`}
                     color="error"
                     onClick={() =>
-                      handleRemoveItem(row.productId, `remove${row.productId}`)
+                      dispatch(
+                        removeBasketItemAsync({
+                          productId: row.productId,
+                          quantity: 1,
+                          name: 'rem',
+                        })
+                      )
                     }
                   >
                     <Remove />
                   </LoadingButton>
                   {row.quantity}
                   <LoadingButton
-                    loading={
-                      status.loading && status.name === `add${row.productId}`
-                    }
+                    loading={status === `pendingAddItem${row.productId}`}
                     color="secondary"
                     onClick={() =>
-                      handleAddItem(row.productId, `add${row.productId}`)
+                      dispatch(addBasketItemAsync({ productId: row.productId }))
                     }
                   >
                     <Add />
@@ -112,16 +90,15 @@ const BasketPage: React.FC<Props> = () => {
                 </TableCell>
                 <TableCell align="right">
                   <LoadingButton
-                    loading={
-                      status.loading &&
-                      status.name === `removeAll${row.productId}`
-                    }
+                    loading={status === `pendingRemoveItem${row.productId}del`}
                     color="error"
                     onClick={() =>
-                      handleRemoveItem(
-                        row.productId,
-                        `removeAll${row.productId}`,
-                        row.quantity
+                      dispatch(
+                        removeBasketItemAsync({
+                          productId: row.productId,
+                          quantity: row.quantity,
+                          name: 'del',
+                        })
                       )
                     }
                   >
@@ -139,9 +116,9 @@ const BasketPage: React.FC<Props> = () => {
           <BasketSummary />
           <Button
             component={Link}
-            to ="/checkout"
-            variant='contained'
-            size='large'
+            to="/checkout"
+            variant="contained"
+            size="large"
             fullWidth
           >
             Checkout

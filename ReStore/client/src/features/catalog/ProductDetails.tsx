@@ -18,17 +18,19 @@ import LoadingComponents from '../../app/layout/LoadingComponents';
 import { Product } from '../../app/model/Product';
 import { useAppDispatch, useAppSelector } from '../../app/store/configureStore';
 import { currencyFormat } from '../../app/util/util';
-import { removeItem, setBasket } from '../basket/basketSlice';
+import {
+  addBasketItemAsync,
+  removeBasketItemAsync,
+} from '../basket/basketSlice';
 
 const ProductDetails: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { basket } = useAppSelector((state) => state.basket);
+  const { basket, status } = useAppSelector((state) => state.basket);
 
   const { id } = useParams<{ id: string }>();
   const [product, setProduct] = useState<Product | undefined>(undefined);
   const [loading, setLoading] = useState<boolean>(true);
   const [quantity, setQuantity] = useState(0);
-  const [submitting, setSubmitting] = useState<boolean>(false);
   const item = basket?.items.find((i) => i.productId === product?.id);
 
   useEffect(() => {
@@ -48,23 +50,22 @@ const ProductDetails: React.FC = () => {
   };
 
   const handleUpdateCart = () => {
-    setSubmitting(true);
     if (!item || quantity > item.quantity) {
       const updatedQuantity = item ? quantity - item.quantity : quantity;
-      agent.Basket.addItem(product?.id!, updatedQuantity)
-        .then((basket) => dispatch(setBasket(basket)))
-        .catch(console.error)
-        .finally(() => setSubmitting(false));
+      dispatch(
+        addBasketItemAsync({
+          productId: product?.id!,
+          quantity: updatedQuantity,
+        })
+      );
     } else {
       const updatedQuantity = item.quantity - quantity;
-      agent.Basket.removeItem(product?.id!, updatedQuantity)
-        .then(() =>
-          dispatch(
-            removeItem({ productId: product?.id!, quantity: updatedQuantity })
-          )
-        )
-        .catch(console.error)
-        .finally(() => setSubmitting(false));
+      dispatch(
+        removeBasketItemAsync({
+          productId: product?.id!,
+          quantity: updatedQuantity,
+        })
+      );
     }
   };
 
@@ -129,7 +130,7 @@ const ProductDetails: React.FC = () => {
               disabled={
                 item?.quantity === quantity || (!item && quantity === 0)
               }
-              loading={submitting}
+              loading={status.includes('pendingReomveItem' + product.id)}
               onClick={handleUpdateCart}
               sx={{ height: '55px' }}
               color="primary"
