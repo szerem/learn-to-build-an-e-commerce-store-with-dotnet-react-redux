@@ -117,6 +117,7 @@ npm config set progress false --global
 94. Using async functions in redux part 3
 95. Challenge - Solution
 96. Using Entity Adapters
+
 97. Using entity adapter selectors
 98. Fetching a single product
 99. Error handling in the reducers
