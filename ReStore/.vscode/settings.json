@@ -4,6 +4,7 @@
         "Dtos",
         "reduxjs",
         "szerem",
-        "toastify"
+        "toastify",
+        "upsert"
     ]
 }
