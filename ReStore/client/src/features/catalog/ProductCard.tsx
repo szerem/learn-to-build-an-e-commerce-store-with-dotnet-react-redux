@@ -13,22 +13,24 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import agent from '../../app/api/agent';
 import { Product } from '../../app/model/Product';
-import { useStoreContext } from '../../app/context/StoreContext';
 import { currencyFormat } from '../../app/util/util';
+import { useAppDispatch } from '../../app/store/configureStore';
+import { setBasket } from '../basket/basketSlice';
 interface Props {
   index: number;
   product: Product;
 }
 
 const ProductCard: React.FC<Props> = ({ index, product }) => {
-  const { setBasket } = useStoreContext();
+  const dispatch = useAppDispatch();
+
   const [loading, setLoading] = useState(false);
 
   const handleAddItem = (productId: number) => {
     setLoading(true);
     console.log(`productId=${productId}`);
     agent.Basket.addItem(productId)
-      .then((basket) => setBasket(basket))
+      .then((basket) => dispatch(setBasket(basket)))
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));
   };

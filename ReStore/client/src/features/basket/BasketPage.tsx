@@ -16,14 +16,17 @@ import {
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import agent from '../../app/api/agent';
-import { useStoreContext } from '../../app/context/StoreContext';
+import { useAppDispatch, useAppSelector } from '../../app/store/configureStore';
 import { currencyFormat } from '../../app/util/util';
+import { removeItem, setBasket } from './basketSlice';
 import BasketSummary from './BasketSummary';
 
 interface Props {}
 
 const BasketPage: React.FC<Props> = () => {
-  const { basket, removeItem, setBasket } = useStoreContext();
+  const dispatch = useAppDispatch();
+  const { basket } = useAppSelector(state => state.basket);
+  
   const [status, setStatus] = useState({
     loading: false,
     name: '',
@@ -32,14 +35,14 @@ const BasketPage: React.FC<Props> = () => {
   const handleAddItem = (productId: number, name: string) => {
     setStatus({ loading: true, name });
     agent.Basket.addItem(productId)
-      .then((basket) => setBasket(basket))
+      .then((basket) => dispatch(setBasket(basket)))
       .catch(console.log)
       .finally(() => setStatus({ loading: false, name: '' }));
   };
   const handleRemoveItem = (productId: number, name: string, quantity = 1) => {
     setStatus({ loading: true, name });
     agent.Basket.removeItem(productId, quantity)
-      .then(() => removeItem(productId, quantity))
+      .then(() => dispatch(removeItem({productId, quantity})))
       .catch(console.error)
       .finally(() => setStatus({ loading: false, name: '' }));
   };
