@@ -26,6 +26,7 @@ const ProductDetails: React.FC = () => {
   const { basket, status } = useAppSelector((state) => state.basket);
   const dispatch = useAppDispatch();
   const { id } = useParams<{ id: string }>();
+  console.log(id);  
   const product = useAppSelector((state) =>
     productSelectors.selectById(state, id)
   );
@@ -35,7 +36,7 @@ const ProductDetails: React.FC = () => {
 
   useEffect(() => {
     if (item) setQuantity(item.quantity);
-    if (!product) dispatch(fetchProductAsync(+id));
+    if (!product) dispatch(fetchProductAsync(parseInt(id)));
   }, [id, item, dispatch, product]);
 
   const handleInputChange = (
@@ -67,7 +68,7 @@ const ProductDetails: React.FC = () => {
     }
   };
 
-  if (productStatus.includes('pending'))
+  if (productStatus.includes('pending '))
     return <LoadingComponents message="Loading product..." />;
   if (!product) return <NotFound />;
 
@@ -128,7 +129,7 @@ const ProductDetails: React.FC = () => {
               disabled={
                 item?.quantity === quantity || (!item && quantity === 0)
               }
-              loading={status.includes('pendingReomveItem' + product.id)}
+              loading={status.includes('pendingRemoveItem' + product.id)}
               onClick={handleUpdateCart}
               sx={{ height: '55px' }}
               color="primary"
