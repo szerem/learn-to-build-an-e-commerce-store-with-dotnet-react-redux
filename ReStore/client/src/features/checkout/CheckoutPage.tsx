@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   Container,
-  Divider,
   Paper,
   Step,
   StepLabel,
@@ -57,7 +56,6 @@ const CheckoutPage = () => {
           <Button></Button>
         </Box>
       </>
-      <Divider />
 
       {/* <Button fullWidth component={Link} to='/catalog'>Go back to shop</Button> */}
     </Container>

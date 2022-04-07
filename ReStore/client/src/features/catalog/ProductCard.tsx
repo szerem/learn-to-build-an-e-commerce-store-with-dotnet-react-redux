@@ -21,8 +21,6 @@ interface Props {
 const ProductCard: React.FC<Props> = ({ index, product }) => {
   const [loading, setLoading] = useState(false);
 
-  // if (loading) return <LoadingComponents message="Loading products..." />;
-
   const handleAddItem = (productId: number) => {
     setLoading(true);
     console.log(`productId=${productId}`);
