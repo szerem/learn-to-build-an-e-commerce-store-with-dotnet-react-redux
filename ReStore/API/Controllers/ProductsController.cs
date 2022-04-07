@@ -19,7 +19,12 @@ namespace API.Controllers
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<Product>>> GetProducts([FromQuery] string orderBy, [FromQuery] string searchTerm)
+    public async Task<ActionResult<List<Product>>> GetProducts(
+      [FromQuery] string orderBy,
+      [FromQuery] string searchTerm, 
+      [FromQuery] string brands, 
+      [FromQuery] string types
+    )
     {
       var query = _context
       .Products

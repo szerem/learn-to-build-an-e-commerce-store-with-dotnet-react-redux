@@ -126,8 +126,8 @@ npm config set progress false --global
 102. Section 8 Introduction
 103. Adding sorting to the API
 104. Adding search functionality to the API
-
 105. Adding filters to the API
+
 106. Adding a pagination helper classes
 107. Creating a class that extends our List into a PagedList
 108. Testing our pagination in swagger
