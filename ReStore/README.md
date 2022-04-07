@@ -131,8 +131,8 @@ npm config set progress false --global
 107. Creating a class that extends our List into a PagedList
 108. Testing our pagination in swagger
 109. Getting the unique brands and filters as lists from the API
-
 110. Getting the filter lists from the API and storing in Redux state
+
 111. Catalog page design
 112. Adding the product params to redux state
 113. Setting up the axios get request to use our params
