@@ -125,6 +125,7 @@ npm config set progress false --global
 
 102. Section 8 Introduction
 103. Adding sorting to the API
+
 104. Adding search functionality to the API
 105. Adding filters to the API
 106. Adding a pagination helper classes
