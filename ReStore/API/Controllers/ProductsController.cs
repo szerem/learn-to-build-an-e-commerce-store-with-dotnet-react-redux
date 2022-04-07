@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using API.Data;
 using API.Entities;
@@ -8,6 +9,7 @@ using API.Extensions;
 using API.RequestHelpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 
 namespace API.Controllers
 {
@@ -45,6 +47,16 @@ namespace API.Controllers
         return NotFound();
 
       return Ok(product);
+    }
+
+
+
+    [HttpGet("filters")]
+    public async Task<IActionResult> GetFilters()
+    {
+      var brants = await _context.Products.Select(p => p.Brand).Distinct().ToListAsync();
+      var types = await _context.Products.Select(p => p.Type).Distinct().ToListAsync();
+      return Ok(new { brants, types });
     }
   }
 }
