@@ -34,10 +34,10 @@ namespace API.Extensions
       var brandList = new List<string>();
       var typeList = new List<string>();
 
-      if (string.IsNullOrWhiteSpace(brands))
+      if (!string.IsNullOrWhiteSpace(brands))
         brandList = brands.ToLower().Split(',').ToList();
 
-      if (string.IsNullOrWhiteSpace(types))
+      if (!string.IsNullOrWhiteSpace(types))
         typeList = types.ToLower().Split(',').ToList();
 
       query.Where(p => brandList.Count == 0 || brandList.Contains(p.Brand.ToLower()));
