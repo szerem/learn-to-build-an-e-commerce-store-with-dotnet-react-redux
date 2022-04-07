@@ -2,7 +2,9 @@
     "cSpell.language": "en,en-US",
     "cSpell.words": [
         "Dtos",
+        "reduxjs",
         "szerem",
-        "toastify"
+        "toastify",
+        "upsert"
     ]
 }

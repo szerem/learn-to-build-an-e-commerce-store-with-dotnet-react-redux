@@ -97,3 +97,29 @@ Section 6: Adding the shopping cart feature
 81. Updating the product detail component to add items to cart part 2
 82. Adding a checkout page
 83. Section 6 Summary
+
+
+84. Section 7 Introduction
+85. Installing and using Redux
+    npm install redux react-redux
+86. Redux actions
+87. Action Creators
+88. Using Redux Toolkit
+
+npm install @reduxjs/toolkit
+
+89. Using redux dev tools
+90. Creating a basket slice
+91. Refactoring the app to use the redux store
+npm config set progress false --global
+92. Using async functions in redux part 1
+93. Using async functions in redux part 2
+94. Using async functions in redux part 3
+95. Challenge - Solution
+96. Using Entity Adapters
+97. Using entity adapter selectors
+98. Fetching a single product
+
+99. Error handling in the reducers
+100. Error handling in the basket slice
+101. Section 7 summary
