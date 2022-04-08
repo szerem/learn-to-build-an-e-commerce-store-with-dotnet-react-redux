@@ -135,8 +135,8 @@ npm config set progress false --global
 111. Catalog page design
 112. Adding the product params to redux state
 113. Setting up the axios get request to use our params
-
 114. Adding the search functionality to the client
+
 115. Adding sort to the client
 116. Adding filtering to the client
 117. Setting up pagination on the client

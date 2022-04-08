@@ -21,6 +21,7 @@ import {
   productSelectors,
 } from './catalogSlice';
 import ProductList from './ProductList';
+import ProductSearch from './ProductSearch';
 
 interface Props {}
 
@@ -51,7 +52,7 @@ const Catalog: React.FC<Props> = () => {
     <Grid container spacing={4}>
       <Grid item xs={3}>
         <Paper sx={{ mb: 2 }}>
-          <TextField label="Search products" variant="outlined" fullWidth />
+          <ProductSearch />
         </Paper>
         <Paper sx={{ mb: 2, p: 2 }}>
           <FormControl component="fieldset">
