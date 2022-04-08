@@ -142,7 +142,6 @@ npm config set progress false --global
 118. Adding a pagination component
 119. Challenge solution
 120. Cleaning up the loading indicators in the catalog
-
 121. Section 8 Summary
 
 122. Section 9 Introduction
