@@ -1,15 +1,8 @@
 import {
   Box,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormGroup,
   Grid,
   Pagination,
   Paper,
-  Radio,
-  RadioGroup,
-  TextField,
   Typography,
 } from '@mui/material';
 import React, { useEffect } from 'react';

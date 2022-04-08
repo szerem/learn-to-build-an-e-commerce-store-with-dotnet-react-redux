@@ -1,8 +1,9 @@
+
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import { history } from '../..';
-
-const sleep = () => new Promise((resolver) => setTimeout(resolver, 500));
+import { PaginationResponse } from '../model';
+import { sleep } from '../util/util';
 
 axios.defaults.baseURL = 'http://localhost:5000/api/';
 axios.defaults.withCredentials = true;
@@ -10,12 +11,16 @@ axios.defaults.withCredentials = true;
 const responseBody = (response: AxiosResponse) => response.data;
 
 axios.interceptors.request.use((request) => {
-  console.log(`${request.method}: ${request.url}`);
+  console.log(`${request.method}: ${request.url} params:${request.params}`);
   return request;
 });
 axios.interceptors.response.use(
   async (response) => {
     await sleep();
+    const pagination = response.headers['pagination']
+    // console.log(response);    
+    if (pagination)
+      response.data = new PaginationResponse(response.data, JSON.parse(pagination));
     return response;
   },
   (error: AxiosError) => {

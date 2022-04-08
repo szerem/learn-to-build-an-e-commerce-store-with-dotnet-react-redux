@@ -138,8 +138,8 @@ npm config set progress false --global
 114. Adding the search functionality to the client
 115. Adding sort to the client
 116. Adding filtering to the client
-
 117. Setting up pagination on the client
+
 118. Adding a pagination component
 119. Challenge solution
 120. Cleaning up the loading indicators in the catalog
