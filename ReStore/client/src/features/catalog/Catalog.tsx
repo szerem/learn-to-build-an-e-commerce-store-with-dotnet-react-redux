@@ -27,7 +27,6 @@ const Catalog: React.FC<Props> = () => {
   const products = useAppSelector(productSelectors.selectAll);
   const {
     productsLoaded,
-    status,
     filtersLoaded,
     brands,
     types,
@@ -44,7 +43,7 @@ const Catalog: React.FC<Props> = () => {
     if (!filtersLoaded) dispatch(fetchFiltersAsync());
   }, [dispatch, filtersLoaded]);
 
-  if (status.includes('pending') || !metaData)
+  if (!filtersLoaded)
     return <LoadingComponents message="Loading products..." />;
 
   return (
@@ -82,12 +81,14 @@ const Catalog: React.FC<Props> = () => {
       </Grid>
       <Grid item xs={3}></Grid>
       <Grid item xs={9} sx={{ mb: 2 }}>
-        <AppPagination
-          metaData={metaData}
-          onPageChnage={(page: number) =>
-            dispatch(setPageNumber({ pageNumber: page }))
-          }
-        />
+        {metaData && (
+          <AppPagination
+            metaData={metaData}
+            onPageChnage={(page: number) =>
+              dispatch(setPageNumber({ pageNumber: page }))
+            }
+          />
+        )}
       </Grid>
     </Grid>
   );

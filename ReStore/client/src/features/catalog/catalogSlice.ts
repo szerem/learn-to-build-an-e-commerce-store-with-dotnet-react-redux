@@ -45,6 +45,7 @@ export const fetchProductsAsync = createAsyncThunk<
     thunkAPI.dispatch(setMetaData(response.medaData));
     return response.items;
   } catch (error: any) {
+    console.log(error);
     thunkAPI.rejectWithValue({ error: error.data });
   }
 });
@@ -55,6 +56,7 @@ export const fetchProductAsync = createAsyncThunk<Product, number>(
     try {
       return await agent.Catalog.details(productId);
     } catch (error: any) {
+      console.log(error);
       thunkAPI.rejectWithValue({ error: error.data });
     }
   }
@@ -66,6 +68,7 @@ export const fetchFiltersAsync = createAsyncThunk(
     try {
       return await agent.Catalog.fetchFilters();
     } catch (error: any) {
+      console.log(error);
       thunkAPI.rejectWithValue({ error: error.data });
     }
   }
@@ -119,25 +122,25 @@ export const catalogSlice = createSlice({
       state.status = 'pendingFetchProducts';
     });
     builder.addCase(fetchProductsAsync.fulfilled, (state, action) => {
-      console.log(action);
+      // console.log(action);
       productAdapter.setAll(state, action.payload);
       state.status = 'idle';
       state.productsLoaded = true;
     });
     builder.addCase(fetchProductsAsync.rejected, (state, action) => {
-      console.log(action.payload);
+      // console.log(action.payload);
       state.status = 'idle';
     });
     builder.addCase(fetchProductAsync.pending, (state) => {
       state.status = 'pendingFetchProduct';
     });
     builder.addCase(fetchProductAsync.fulfilled, (state, action) => {
-      console.log(action);
+      // console.log(action);
       productAdapter.upsertOne(state, action.payload);
       state.status = 'idle';
     });
     builder.addCase(fetchProductAsync.rejected, (state, action) => {
-      console.log(action);
+      // console.log(action);
       state.status = 'idle';
     });
 
@@ -152,7 +155,7 @@ export const catalogSlice = createSlice({
     });
     builder.addCase(fetchFiltersAsync.rejected, (state, action) => {
       state.status = 'idle';
-      console.log(action.payload);
+      // console.log(action.payload);
     });
   },
 });
