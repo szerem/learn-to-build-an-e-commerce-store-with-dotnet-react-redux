@@ -11,7 +11,7 @@ const ProductSearch: React.FC = () => {
 
   const debouncedSearch = debounce((event: any) => {
     dispatch(setProductParams({ searchTerm: event.target.value }));
-  }, 1000);
+  }, 1500);
   return (
     <TextField
       label="Search products"

@@ -1,11 +1,6 @@
-import {
-  Box,
-  Grid,
-  Pagination,
-  Paper,
-  Typography,
-} from '@mui/material';
+import { Grid, Paper } from '@mui/material';
 import React, { useEffect } from 'react';
+import AppPagination from '../../app/components/AppPagination';
 import CheckboxButtons from '../../app/components/CheckboxButtons';
 import RadioButtonGroup from '../../app/components/RadioButtonGroup';
 import LoadingComponents from '../../app/layout/LoadingComponents';
@@ -14,6 +9,7 @@ import {
   fetchFiltersAsync,
   fetchProductsAsync,
   productSelectors,
+  setPageNumber,
   setProductParams,
 } from './catalogSlice';
 import ProductList from './ProductList';
@@ -36,6 +32,7 @@ const Catalog: React.FC<Props> = () => {
     brands,
     types,
     productParams,
+    metaData,
   } = useAppSelector((state) => state.catalog);
   const dispatch = useAppDispatch();
 
@@ -47,11 +44,11 @@ const Catalog: React.FC<Props> = () => {
     if (!filtersLoaded) dispatch(fetchFiltersAsync());
   }, [dispatch, filtersLoaded]);
 
-  if (status.includes('pending'))
+  if (status.includes('pending') || !metaData)
     return <LoadingComponents message="Loading products..." />;
 
   return (
-    <Grid container spacing={4}>
+    <Grid container columnSpacing={4}>
       <Grid item xs={3}>
         <Paper sx={{ mb: 2 }}>
           <ProductSearch />
@@ -84,11 +81,13 @@ const Catalog: React.FC<Props> = () => {
         <ProductList products={products} />
       </Grid>
       <Grid item xs={3}></Grid>
-      <Grid item xs={9}>
-        <Box display="flex" justifyContent="space-between" alignItems="center">
-          <Typography>Display 1-6 of 20 items</Typography>
-          <Pagination color="secondary" size="large" count={20} page={2} />
-        </Box>
+      <Grid item xs={9} sx={{ mb: 2 }}>
+        <AppPagination
+          metaData={metaData}
+          onPageChnage={(page: number) =>
+            dispatch(setPageNumber({ pageNumber: page }))
+          }
+        />
       </Grid>
     </Grid>
   );
