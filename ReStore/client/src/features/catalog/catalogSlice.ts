@@ -25,9 +25,9 @@ function getAxiosParams(productParams: ProductParams): URLSearchParams {
   params.append('orderBy', productParams.orderBy);
   if (productParams.searchTerm)
     params.append('searchTerm', productParams.searchTerm);
-  if (productParams.brands)
+  if (productParams.brands && productParams.brands.length > 0)
     params.append('brands', productParams.brands.toString());
-  if (productParams.types)
+  if (productParams.types && productParams.types.length > 0)
     params.append('types', productParams.types.toString());
   return params;
 }
@@ -37,7 +37,7 @@ export const fetchProductsAsync = createAsyncThunk<
   void,
   { state: RootState }
 >('catalog/fetchProductsAsync', async (_, thunkAPI) => {
-  const params = getAxiosParams(thunkAPI.getState()!.catalog.productParams);
+  const params = getAxiosParams(thunkAPI.getState().catalog.productParams);
   try {
     return await agent.Catalog.list(params);
   } catch (error: any) {
