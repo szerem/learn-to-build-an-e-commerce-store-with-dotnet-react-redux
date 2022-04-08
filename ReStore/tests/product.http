@@ -1,0 +1,27 @@
+###
+curl -X 'GET' \
+  'http://localhost:5000/api/Products?orderBy=priceDesc' \
+  -H 'accept: text/plain'
+
+
+###  
+curl -X 'GET' \
+  'http://localhost:5000/api/Products' \
+  -H 'accept: text/plain'
+
+###
+curl -X 'GET' \
+'http://localhost:5000/api/Products?searchTerm=red' \
+-H 'accept: text/plain'
+
+
+###
+curl -X 'GET' \
+'http://localhost:5000/api/Products?searchTerm=blue' \
+-H 'accept: text/plain'
+
+
+###
+curl -X 'GET' \
+'http://localhost:5000/api/Products?orderBy=price&searchTerm=blue' \
+-H 'accept: text/plain'

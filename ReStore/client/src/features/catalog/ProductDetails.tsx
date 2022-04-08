@@ -26,7 +26,7 @@ const ProductDetails: React.FC = () => {
   const { basket, status } = useAppSelector((state) => state.basket);
   const dispatch = useAppDispatch();
   const { id } = useParams<{ id: string }>();
-  console.log(id);  
+  // console.log(id);  
   const product = useAppSelector((state) =>
     productSelectors.selectById(state, id)
   );
