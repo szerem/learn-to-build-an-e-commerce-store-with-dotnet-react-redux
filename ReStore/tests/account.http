@@ -1,0 +1,33 @@
+
+###
+curl -X 'POST' \
+  'http://localhost:5000/api/Account/login' \
+  -H 'accept: text/plain' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "username": "tom",
+  "password": "Pa$$w0rd"
+}'
+
+###
+curl -X 'POST' \
+  'http://localhost:5000/api/Account/register' \
+  -H 'accept: text/plain' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "username": "bob",
+  "password": "Pa$$w0rd",
+  "email":"bob@test.com"
+}'
+
+
+###
+curl -X 'POST' \
+  'http://localhost:5000/api/Account/register' \
+  -H 'accept: text/plain' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "username": "tom",
+  "password": "Pa$$w0rd",
+  "email":"tom@test.com"
+}'

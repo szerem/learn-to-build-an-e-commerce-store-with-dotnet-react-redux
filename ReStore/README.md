@@ -149,8 +149,8 @@ npm config set progress false --global
 124. Adding the entity configuration and migration
 dotnet tool install --global dotnet-ef --version 5
 dotnet ef migrations add IdentityAdded
-
 125. Adding an account controller
+
 126. Testing the login and register methods
 127. JWT Tokens
 128. Creating a token service
