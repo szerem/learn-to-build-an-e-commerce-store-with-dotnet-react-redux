@@ -15,6 +15,8 @@ using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using API.Middleware;
+using API.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace API
 {
@@ -39,6 +41,11 @@ namespace API
                 opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection"))
             );
             services.AddCors();
+            services.AddIdentityCore<User>()
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<StoreContext>();
+            services.AddAuthentication();
+            services.AddAuthorization();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
