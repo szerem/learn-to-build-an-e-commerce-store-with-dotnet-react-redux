@@ -146,6 +146,7 @@ npm config set progress false --global
 
 122. Section 9 Introduction
 123. Setting up identity
+
 124. Adding the entity configuration and migration
 125. Adding an account controller
 126. Testing the login and register methods
