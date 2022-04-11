@@ -156,10 +156,10 @@ dotnet ef migrations add IdentityAdded
 129. Using the token service
 130. Validating the token on the server
 131. Configuring swagger to send the auth token
-
 132. Creating Login and Register components
 133. Create a login form
 134. Using controlled component
+
 135. Adding React hook form
 136. Using React hook form validators
 137. Adding an account slice

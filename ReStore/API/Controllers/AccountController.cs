@@ -27,7 +27,7 @@ namespace API.Controllers
     public TokenService TokenService => _tokenService;
 
     [HttpPost("login")]
-    public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
+    public async Task<ActionResult<UserDto>> Login([FromBody] LoginDto loginDto)
     {
       var user = await _userManager.FindByNameAsync(loginDto.Username);
       if (user is null || !await _userManager.CheckPasswordAsync(user, loginDto.Password))

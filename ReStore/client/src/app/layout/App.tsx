@@ -24,6 +24,8 @@ import agent from '../api/agent';
 import LoadingComponents from './LoadingComponents';
 import { setBasket } from '../../features/basket/basketSlice';
 import { useAppDispatch } from '../store/configureStore';
+import Login from '../../features/account/Login';
+import Register from '../../features/account/Register';
 
 const App = () => {
   // console.log(`App ${new Date().toISOString()} ...`);
@@ -75,6 +77,8 @@ const App = () => {
           <Route path="/server-error" component={ServerError} />
           <Route path="/basket" component={BasketPage} />
           <Route path="/checkout" component={CheckoutPage} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
           <Route component={NotFound} />
         </Switch>
       </Container>
