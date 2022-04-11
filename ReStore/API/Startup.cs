@@ -17,6 +17,10 @@ using Microsoft.EntityFrameworkCore;
 using API.Middleware;
 using API.Entities;
 using Microsoft.AspNetCore.Identity;
+using API.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace API
 {
@@ -46,8 +50,18 @@ namespace API
             })
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<StoreContext>();
-            services.AddAuthentication();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+              .AddJwtBearer( opt => 
+                 opt.TokenValidationParameters = new TokenValidationParameters {
+                   ValidateIssuer = false,
+                   ValidateAudience = false,
+                   ValidateLifetime = true,
+                   ValidateIssuerSigningKey = true,
+                   IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWTSettings:TokenKey"])),                  
+                 }
+              );
             services.AddAuthorization();
+            services.AddScoped<TokenService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,6 +83,7 @@ namespace API
                 .AllowCredentials()
                 .WithOrigins("http://localhost:3000", "http://localhost:3001");
             });
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

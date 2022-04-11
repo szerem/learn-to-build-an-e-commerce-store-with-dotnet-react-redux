@@ -150,12 +150,12 @@ npm config set progress false --global
 dotnet tool install --global dotnet-ef --version 5
 dotnet ef migrations add IdentityAdded
 125. Adding an account controller
-
 126. Testing the login and register methods
 127. JWT Tokens
 128. Creating a token service
 129. Using the token service
 130. Validating the token on the server
+
 131. Configuring swagger to send the auth token
 132. Creating Login and Register components
 133. Create a login form
