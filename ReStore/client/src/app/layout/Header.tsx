@@ -14,21 +14,23 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useAppSelector } from '../../app/store/configureStore';
 
+import SignedInMenu from './SignedInMenu';
+
 interface Props {
   darkMode: boolean;
   switchDarkMode: (dark: boolean) => void;
 }
+
+const rightLinks = [
+  { title: 'login', path: '/login' },
+  { title: 'register', path: '/register' },
+];
 
 const midLinks = [
   { title: 'catalog', path: '/catalog' },
   { title: 'about', path: '/about' },
   { title: 'contact', path: '/contact' },
   { title: 'checkout', path: '/checkout' },
-];
-
-const rightLinks = [
-  { title: 'login', path: '/login' },
-  { title: 'register', path: '/register' },
 ];
 
 // https://mui.com/customization/color/
@@ -45,13 +47,18 @@ const navStyles = {
 };
 
 const Header: React.FC<Props> = ({ darkMode, switchDarkMode }) => {
+  // const dispatch = useAppDispatch();
   const { basket } = useAppSelector((state) => state.basket);
-
+  const { user } = useAppSelector((state) => state.account);
   const itemCount = basket?.items.reduce((sum, item) => sum + item.quantity, 0);
 
   const handleSwitch = (event: React.ChangeEvent<HTMLInputElement>) => {
     switchDarkMode(event.target.checked);
   };
+
+  // useEffect(() => {
+  //   dispatch(fetchCurrentUser());
+  // }, [dispatch]);
 
   return (
     <AppBar position="static" sx={{ mb: 4 }}>
@@ -101,13 +108,22 @@ const Header: React.FC<Props> = ({ darkMode, switchDarkMode }) => {
               <ShoppingCart />
             </Badge>
           </IconButton>
-          <List sx={{ display: 'flex' }}>
-            {rightLinks.map(({ title, path }) => (
-              <ListItem component={NavLink} to={path} key={path} sx={navStyles}>
-                {title.toUpperCase()}
-              </ListItem>
-            ))}
-          </List>
+          {user ? (
+            <SignedInMenu />
+          ) : (
+            <List sx={{ display: 'flex' }}>
+              {rightLinks.map(({ title, path }) => (
+                <ListItem
+                  component={NavLink}
+                  to={path}
+                  key={path}
+                  sx={navStyles}
+                >
+                  {title.toUpperCase()}
+                </ListItem>
+              ))}
+            </List>
+          )}
         </Box>
       </Toolbar>
     </AppBar>

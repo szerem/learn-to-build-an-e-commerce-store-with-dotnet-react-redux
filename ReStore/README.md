@@ -163,8 +163,8 @@ dotnet ef migrations add IdentityAdded
 npm install react-hook-form
 136. Using React hook form validators
 137. Adding an account slice
-
 138. Creating a dropdown menu
+
 139. Persisting the login
 140. Cleaning up the app init code
 141. Adding a register form

@@ -32,6 +32,8 @@ export default function Login() {
   });
 
   const submitForm = async (data: FieldValues) => {
+    console.log('XXXXXXXXXXXXXXXXXXXXX');    
+    console.log(data);    
     await dispatch(signInUser(data));
     history.push('/catalog');
   };
