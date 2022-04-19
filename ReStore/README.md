@@ -152,6 +152,8 @@ dotnet ef migrations add IdentityAdded
 125. Adding an account controller
 126. Testing the login and register methods
 127. JWT Tokens
+https://jwt.io/
+https://piotrgankiewicz.com/2018/04/25/canceling-jwt-tokens-in-net-core/
 128. Creating a token service
 129. Using the token service
 130. Validating the token on the server
@@ -164,8 +166,8 @@ npm install react-hook-form
 136. Using React hook form validators
 137. Adding an account slice
 138. Creating a dropdown menu
-
 139. Persisting the login
+
 140. Cleaning up the app init code
 141. Adding a register form
 142. Adding the registration validators

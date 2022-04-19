@@ -2,6 +2,7 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import { history } from '../..';
 import { PaginationResponse } from '../model';
+import { store } from '../store/configureStore';
 import { sleep } from '../util/util';
 
 axios.defaults.baseURL = 'http://localhost:5000/api/';
@@ -15,6 +16,10 @@ axios.interceptors.request.use((request) => {
   console.log(`${request.method}: ${request.url}`);
   if (request.params) console.log(`params:${request.params}`);
   if (request.data) console.log(`data:${JSON.stringify(request.data)}`);
+
+  const token = store.getState().account.user?.token;
+    if (token) request.headers.Authorization = `Bearer ${token}`;
+  
   return request;
 });
 axios.interceptors.response.use(

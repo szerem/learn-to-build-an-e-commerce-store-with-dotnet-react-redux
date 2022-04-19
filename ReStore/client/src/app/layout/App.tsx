@@ -26,6 +26,7 @@ import { setBasket } from '../../features/basket/basketSlice';
 import { useAppDispatch } from '../store/configureStore';
 import Login from '../../features/account/Login';
 import Register from '../../features/account/Register';
+import { fetchCurrentUser } from '../../features/account/accountSlice';
 
 const App = () => {
   // console.log(`App ${new Date().toISOString()} ...`);
@@ -35,6 +36,7 @@ const App = () => {
 
   useEffect(() => {
     const buyerId = getCookie('buyerId');
+    dispatch(fetchCurrentUser());
     if (buyerId) {
       agent.Basket.get()
         .then((basket) => dispatch(setBasket(basket)))
