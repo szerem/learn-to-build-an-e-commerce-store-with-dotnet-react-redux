@@ -1,6 +1,7 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, isAnyOf } from '@reduxjs/toolkit';
 import agent from '../../app/api/agent';
 import { Basket } from '../../app/model';
+import { getCookie } from '../../app/util/util';
 
 export interface BasketState {
   basket: Basket | null;
@@ -40,6 +41,25 @@ export const removeBasketItemAsync = createAsyncThunk<
   }
 });
 
+export const fetchBasketAsync = createAsyncThunk<Basket>(
+  'basket/fetchBasketAsync',
+  async (_, thunkAPI) => {
+    try {
+      return await agent.Basket.get();
+    } catch (error: any) {
+      console.log(error);
+      return thunkAPI.rejectWithValue({ error: error.data });
+    }
+  },
+  {
+    condition: () => {
+      if (!getCookie('buyerId')) {
+        return false;
+      }
+    },
+  }
+);
+
 export const basketSlice = createSlice({
   name: 'basket',
   initialState,
@@ -50,20 +70,18 @@ export const basketSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(addBasketItemAsync.pending, (state, action) => {
-      // console.log(action);
       const { productId, name } = action.meta.arg;
       state.status = 'pendingAddItem' + productId + name ?? '';
     });
-    builder.addCase(addBasketItemAsync.fulfilled, (state, action) => {
-      // console.log(action);
-      state.basket = action.payload;
-      state.status = 'idle';
-    });
-    builder.addCase(addBasketItemAsync.rejected, (state) => {
-      state.status = 'idle';
-    });
+    // builder.addCase(addBasketItemAsync.fulfilled, (state, action) => {
+    //   // console.log(action);
+    //   state.basket = action.payload;
+    //   state.status = 'idle';
+    // });
+    // builder.addCase(addBasketItemAsync.rejected, (state) => {
+    //   state.status = 'idle';
+    // });
     builder.addCase(removeBasketItemAsync.pending, (state, action) => {
-      // console.log(action);
       const { productId, name } = action.meta.arg;
       state.status = `pendingRemoveItem${productId}${name ?? ''}`;
     });
@@ -83,6 +101,20 @@ export const basketSlice = createSlice({
     builder.addCase(removeBasketItemAsync.rejected, (state) => {
       state.status = 'idle';
     });
+
+    builder.addMatcher(
+      isAnyOf(addBasketItemAsync.fulfilled, fetchBasketAsync.fulfilled),
+      (state, action) => {
+        state.basket = action.payload;
+        state.status = 'idle';
+      }
+    );
+    builder.addMatcher(
+      isAnyOf(addBasketItemAsync.rejected, addBasketItemAsync.rejected),
+      (state) => {
+        state.status = 'idle';
+      }
+    );
   },
 });
 

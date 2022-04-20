@@ -4,7 +4,7 @@ import {
   createTheme,
   ThemeProvider,
 } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import AboutPage from '../../features/about/AboutPage';
@@ -19,10 +19,8 @@ import NotFound from '../errors/NotFound';
 import BasketPage from '../../features/basket/BasketPage';
 import CheckoutPage from '../../features/checkout/CheckoutPage';
 import Footer from './Footer';
-import { getCookie } from '../util/util';
-import agent from '../api/agent';
 import LoadingComponents from './LoadingComponents';
-import { setBasket } from '../../features/basket/basketSlice';
+import { fetchBasketAsync } from '../../features/basket/basketSlice';
 import { useAppDispatch } from '../store/configureStore';
 import Login from '../../features/account/Login';
 import Register from '../../features/account/Register';
@@ -34,18 +32,20 @@ const App = () => {
 
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const buyerId = getCookie('buyerId');
-    dispatch(fetchCurrentUser());
-    if (buyerId) {
-      agent.Basket.get()
-        .then((basket) => dispatch(setBasket(basket)))
-        .catch((err) => console.log(err))
-        .finally(() => setLoading(false));
-    } else {
-      setLoading(false);
+  const initApp = useCallback(async () => {
+    try {
+      await dispatch(fetchCurrentUser());
+      await dispatch(fetchBasketAsync());
+    } catch (error) {
+      console.log(error);
     }
   }, [dispatch]);
+
+  useEffect(() => {
+    initApp()
+      .then(() => setLoading(true))
+      .finally(() => setLoading(false));
+  }, [initApp]);
 
   const [darkMode, setDarkMode] = useState(false);
   const paletteType = darkMode ? 'dark' : 'light';

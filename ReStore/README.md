@@ -167,8 +167,8 @@ npm install react-hook-form
 137. Adding an account slice
 138. Creating a dropdown menu
 139. Persisting the login
-
 140. Cleaning up the app init code
+
 141. Adding a register form
 142. Adding the registration validators
 143. Transfer the basket to logged in user
