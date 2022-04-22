@@ -172,9 +172,9 @@ npm install react-hook-form
 142. Adding the registration validators
 https://regexlib.com
 email
-^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,3}$
-
+^\w+[\w-.]*@\w+((-\w+)|(\w*))\.[a-z]{2,3}$
 143. Transfer the basket to logged in user
+
 144. Client side testing and code for basket transfer
 145. Challenge solution
 146. Adding a private route component
