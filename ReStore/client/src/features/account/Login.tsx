@@ -1,5 +1,5 @@
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { FieldValues, useForm } from 'react-hook-form';
 import {
   Container,
@@ -18,6 +18,7 @@ import { signInUser } from './accountSlice';
 
 export default function Login() {
   const history = useHistory();
+  const location = useLocation<any>();
   const dispatch = useAppDispatch();
 
   const {
@@ -28,10 +29,14 @@ export default function Login() {
     mode: 'all',
   });
 
-  const submitForm = async (data: FieldValues) => {
-    await dispatch(signInUser(data));
-    history.push('/catalog');
-  };
+  async function submitForm(data: FieldValues) {
+    try {
+      await dispatch(signInUser(data));
+      history.push(location.state?.from?.pathname || '/catalog');
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <Container
