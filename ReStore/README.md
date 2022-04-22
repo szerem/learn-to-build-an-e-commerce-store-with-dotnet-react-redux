@@ -147,9 +147,13 @@ npm config set progress false --global
 122. Section 9 Introduction
 123. Setting up identity
 124. Adding the entity configuration and migration
+dotnet tool install --global dotnet-ef --version 5
+dotnet ef migrations add IdentityAdded
 125. Adding an account controller
 126. Testing the login and register methods
 127. JWT Tokens
+https://jwt.io/
+https://piotrgankiewicz.com/2018/04/25/canceling-jwt-tokens-in-net-core/
 128. Creating a token service
 129. Using the token service
 130. Validating the token on the server
@@ -158,6 +162,7 @@ npm config set progress false --global
 133. Create a login form
 134. Using controlled component
 135. Adding React hook form
+npm install react-hook-form
 136. Using React hook form validators
 137. Adding an account slice
 138. Creating a dropdown menu
@@ -165,10 +170,15 @@ npm config set progress false --global
 140. Cleaning up the app init code
 141. Adding a register form
 142. Adding the registration validators
+https://regexlib.com
+email
+^\w+[\w-.]*@\w+((-\w+)|(\w*))\.[a-z]{2,3}$
 143. Transfer the basket to logged in user
 144. Client side testing and code for basket transfer
 145. Challenge solution
 146. Adding a private route component
+https://v5.reactrouter.com/web/guides/quick-start
+
 147. Section 9 Summary
 
 148. Section 10 Introduction
