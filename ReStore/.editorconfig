@@ -2,13 +2,9 @@
 # Remove the line below if you want to inherit .editorconfig settings from higher directories
 root = true
 
-# C# files
-[*.cs]
-end_of_line = lf
-charset = utf-8
-insert_final_newline = true
 
 #### Core EditorConfig Options ####
+
 
 # Indentation and spacing
 indent_size = 2
@@ -24,3 +20,13 @@ dotnet_style_qualification_for_method = true
 
 # CA1000: Do not declare static members on generic types
 dotnet_diagnostic.CA1000.severity = warning
+
+
+# C# files
+[*.cs]
+end_of_line = lf
+charset = utf-8
+insert_final_newline = true
+indent_size = 4
+indent_style = space
+tab_width = 4

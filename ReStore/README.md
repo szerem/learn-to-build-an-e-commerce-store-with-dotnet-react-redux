@@ -178,12 +178,14 @@ email
 145. Challenge solution
 146. Adding a private route component
 https://v5.reactrouter.com/web/guides/quick-start
-
 147. Section 9 Summary
 
 148. Section 10 Introduction
 149. Creating the order entities
 150. Refactoring identity to use an int
+dotnet ef database drop
+dotnet ef migrations add OrderEntityAdded
+
 151. Creating an orders controller
 152. Adding the create order method
 153. Testing the order creation
