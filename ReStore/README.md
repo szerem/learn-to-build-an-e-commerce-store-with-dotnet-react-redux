@@ -192,8 +192,10 @@ dotnet ef migrations add OrderEntityAdded
 155. Creating the checkout component
 https://github.com/mui/material-ui/tree/v5.8.0/docs/data/material/getting-started/templates/checkout
 
-
 156. Adding a custom text input
+useController()
+https://react-hook-form.com/api/usecontroller
+
 157. Using react hook form context
 158. Creating a reusable check box
 159. Adding a validation library
