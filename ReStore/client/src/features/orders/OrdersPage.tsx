@@ -9,6 +9,7 @@ import {
   Button,
 } from '@mui/material';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import agent from '../../app/api/agent';
 import LoadingComponents from '../../app/layout/LoadingComponents';
 import { Order } from '../../app/model/Order';
@@ -26,7 +27,7 @@ const OrdersPage = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  if(loading) return <LoadingComponents message='Loading orders...' />
+  if (loading) return <LoadingComponents message="Loading orders..." />;
 
   return (
     <TableContainer component={Paper}>
@@ -53,7 +54,13 @@ const OrdersPage = () => {
               <TableCell align="right">{dateFormat(order.orderDate)}</TableCell>
               <TableCell align="right">{order.orderStatus}</TableCell>
               <TableCell align="right">
-                  <Button>View</Button> 
+                <Button
+                  component={Link}
+                  to={`/orders/${order.id}`}
+                  size="small"
+                >
+                  View
+                </Button>
               </TableCell>
             </TableRow>
           ))}
