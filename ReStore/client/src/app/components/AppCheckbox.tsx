@@ -7,20 +7,12 @@ interface Props extends UseControllerProps {
 }
 
 const AppCheckbox: FC<Props> = (props: Props) => {
-  const { fieldState, field } = useController({
-    ...props,
-    defaultValue: false,
+  const { field } = useController({
+    ...props
   });
   return (
     <FormControlLabel
-      control={
-        <Checkbox
-          {...props}
-          {...field}
-          color="secondary"
-          value={field.value}
-        />
-      }
+      control={<Checkbox color="secondary" {...field} />}
       label={props.label}
     />
   );
