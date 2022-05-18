@@ -187,9 +187,9 @@ dotnet ef database drop
 dotnet ef migrations add OrderEntityAdded
 151. Creating an orders controller
 152. Adding the create order method
-
 153. Testing the order creation
 154. Shaping the order data
+
 155. Creating the checkout component
 156. Adding a custom text input
 157. Using react hook form context
