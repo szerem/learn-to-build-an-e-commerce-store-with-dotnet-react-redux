@@ -1,0 +1,18 @@
+###
+curl 'https://www.google-analytics.com/j/collect?v=1&_v=j96&aip=1&a=1430426975&t=pageview&_s=1&dl=https%3A%2F%2Fwww.osirursus.pl%2Fnauka-plywania&ul=pl-pl&de=UTF-8&dt=Nauka%20p%C5%82ywania%20%7C%20OSiR%20URSUS&sd=24-bit&sr=1920x1200&vp=1374x1089&je=0&_u=QACAAEABAAAAAC~&jid=110274383&gjid=603848672&cid=609564812.1647776776&tid=UA-54264653-1&_gid=2006619034.1651155496&_r=1&_slc=1&z=1294878477' \
+  -X 'POST' \
+  -H 'authority: www.google-analytics.com' \
+  -H 'accept: */*' \
+  -H 'accept-language: pl-PL,pl;q=0.9,en-US;q=0.8,en;q=0.7' \
+  -H 'content-length: 0' \
+  -H 'content-type: text/plain' \
+  -H 'origin: https://www.osirursus.pl' \
+  -H 'referer: https://www.osirursus.pl/' \
+  -H 'sec-ch-ua: " Not A;Brand";v="99", "Chromium";v="100", "Google Chrome";v="100"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "Windows"' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-site: cross-site' \
+  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36' \
+  --compressed

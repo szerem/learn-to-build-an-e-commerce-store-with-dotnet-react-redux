@@ -178,29 +178,47 @@ email
 145. Challenge solution
 146. Adding a private route component
 https://v5.reactrouter.com/web/guides/quick-start
-
 147. Section 9 Summary
 
 148. Section 10 Introduction
 149. Creating the order entities
 150. Refactoring identity to use an int
+dotnet ef database drop
+dotnet ef migrations add OrderEntityAdded
 151. Creating an orders controller
 152. Adding the create order method
 153. Testing the order creation
 154. Shaping the order data
 155. Creating the checkout component
+https://github.com/mui/material-ui/tree/v5.8.0/docs/data/material/getting-started/templates/checkout
+
 156. Adding a custom text input
+useController()
+https://react-hook-form.com/api/usecontroller
+
 157. Using react hook form context
+
+https://react-hook-form.com/api/useformcontext
+
 158. Creating a reusable check box
 159. Adding a validation library
+https://react-hook-form.com/get-started#SchemaValidation
+https://github.com/jquense/yup
+npm install @hookform/resolvers yup
 160. Updating the review component
 161. Updating the payment form
 162. Submitting the order
 163. Fetching a saved address for the form
+
 164. Creating the orders page
+
+http://json2ts.com/
+
 165. Challenge - Order detail
 166. Challenge - Solution
 167. Section 10 Summary
+
+
 
 168. Section 11 Introduction
 169. Setting up stripe

@@ -26,6 +26,8 @@ import Login from '../../features/account/Login';
 import Register from '../../features/account/Register';
 import { fetchCurrentUser } from '../../features/account/accountSlice';
 import PrivateRoute from './PrivateRoute';
+import OrdersPage from '../../features/orders/OrdersPage';
+import OrderDetails from '../../features/orders/OrderDetails';
 
 const App = () => {
   // console.log(`App ${new Date().toISOString()} ...`);
@@ -80,6 +82,7 @@ const App = () => {
           <Route path="/server-error" component={ServerError} />
           <Route path="/basket" component={BasketPage} />
           <PrivateRoute path="/checkout" component={CheckoutPage} />
+          <PrivateRoute path="/orders" component={OrdersPage} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route component={NotFound} />
