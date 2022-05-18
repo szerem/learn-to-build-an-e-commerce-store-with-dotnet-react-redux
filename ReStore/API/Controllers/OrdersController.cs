@@ -79,7 +79,7 @@ namespace API.Controllers
             {
                 OrderItems = items,
                 BuyerId = User.Identity.Name,
-                Address = dto.ShippingAddress,
+                ShippingAddress = dto.ShippingAddress,
                 Subtotal = subtotal,
                 DeliveryFee = deliveryFee
             };

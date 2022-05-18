@@ -14,7 +14,7 @@ namespace API.Extensions
                 Id = order.Id,
                 BuyerId = order.BuyerId,
                 OrderDate = order.OrderDate,
-                Address = order.Address,
+                ShippingAddress = order.ShippingAddress,
                 DeliveryFee = order.DeliveryFee,
                 Subtotal = order.Subtotal,
                 OrderStatus = order.OrderStatus.ToString(),

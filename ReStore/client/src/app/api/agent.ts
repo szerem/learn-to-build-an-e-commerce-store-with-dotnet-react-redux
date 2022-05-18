@@ -18,8 +18,8 @@ axios.interceptors.request.use((request) => {
   if (request.data) console.log(`data:${JSON.stringify(request.data)}`);
 
   const token = store.getState().account.user?.token;
-    if (token) request.headers.Authorization = `Bearer ${token}`;
-  
+  if (token) request.headers.Authorization = `Bearer ${token}`;
+
   return request;
 });
 axios.interceptors.response.use(
@@ -107,11 +107,18 @@ const Account = {
   currentUser: () => requests.get('account/currentUser'),
 };
 
+const Orders = {
+  list: () => requests.get('orders'),
+  fetch: (id: number) => requests.get(`orders/${id}`),
+  create: (values: any) => requests.post('orders', values),
+};
+
 const agent = {
   Catalog,
   Basket,
   TestErrors,
   Account,
+  Orders,
 };
 
 export default agent;
