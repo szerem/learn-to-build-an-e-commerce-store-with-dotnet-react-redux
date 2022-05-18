@@ -82,8 +82,7 @@ const App = () => {
           <Route path="/server-error" component={ServerError} />
           <Route path="/basket" component={BasketPage} />
           <PrivateRoute path="/checkout" component={CheckoutPage} />
-          <PrivateRoute exact path="/orders" component={OrdersPage} />
-          <PrivateRoute path="/orders/:id" component={OrderDetails} />
+          <PrivateRoute path="/orders" component={OrdersPage} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route component={NotFound} />

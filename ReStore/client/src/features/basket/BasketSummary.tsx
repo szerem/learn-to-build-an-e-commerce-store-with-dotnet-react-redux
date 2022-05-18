@@ -6,14 +6,21 @@ import {
   TableRow,
   TableCell,
 } from '@mui/material';
+import { FC } from 'react';
 import { useAppSelector } from '../../app/store/configureStore';
 import { currencyFormat } from '../../app/util/util';
 
-const BasketSummary = () => {
-  const { basket } = useAppSelector(state => state.basket);
-  const subtotal =
-    basket?.items.reduce((sum, item) => sum + item.quantity * item.price, 0) ??
-    0;
+interface Props {
+  subtotal?: number;
+}
+const BasketSummary: FC<Props> = ({ subtotal }) => {
+  const { basket } = useAppSelector((state) => state.basket);
+  if (!!!subtotal)
+    subtotal =
+      basket?.items.reduce(
+        (sum, item) => sum + item.quantity * item.price,
+        0
+      ) ?? 0;
   const deliveryFee = subtotal > 10000 ? 0 : 500;
 
   if (subtotal === 0) return <></>;

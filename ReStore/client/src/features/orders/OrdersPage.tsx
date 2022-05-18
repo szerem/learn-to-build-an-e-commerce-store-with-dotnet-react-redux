@@ -9,15 +9,16 @@ import {
   Button,
 } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import agent from '../../app/api/agent';
 import LoadingComponents from '../../app/layout/LoadingComponents';
 import { Order } from '../../app/model/Order';
 import { currencyFormat, dateFormat } from '../../app/util/util';
+import OrderDetails from './OrderDetails';
 
 const OrdersPage = () => {
   const [orders, setOrders] = useState<Order[] | null>();
   const [loading, setLoading] = useState(true);
+  const [selectedOrderNumber, setSelectedOrderNumber] = useState(0);
 
   useEffect(() => {
     setLoading(true);
@@ -28,6 +29,14 @@ const OrdersPage = () => {
   }, []);
 
   if (loading) return <LoadingComponents message="Loading orders..." />;
+
+  if (selectedOrderNumber > 0)
+    return (
+      <OrderDetails
+        order={orders?.find((x) => x.id === selectedOrderNumber)!}
+        setSelectedOrder={setSelectedOrderNumber}
+      />
+    );
 
   return (
     <TableContainer component={Paper}>
@@ -54,11 +63,7 @@ const OrdersPage = () => {
               <TableCell align="right">{dateFormat(order.orderDate)}</TableCell>
               <TableCell align="right">{order.orderStatus}</TableCell>
               <TableCell align="right">
-                <Button
-                  component={Link}
-                  to={`/orders/${order.id}`}
-                  size="small"
-                >
+                <Button onClick={() => setSelectedOrderNumber(order.id)}>
                   View
                 </Button>
               </TableCell>
