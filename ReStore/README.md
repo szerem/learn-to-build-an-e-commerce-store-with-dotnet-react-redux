@@ -221,7 +221,14 @@ http://json2ts.com/
 
 
 168. Section 11 Introduction
+PCI - payment card industry data security standard  
+PCI compliance 
+https://dashboard.stripe.com/test/apikeys
+atest6066@gmail.com
 169. Setting up stripe
+dotnet ef migrations add PaymentIntentAdded 
+dotnet ef database drop
+
 170. Creating a payment service
 171. Creating a payments controller
 172. Testing the payment intents using swagger
