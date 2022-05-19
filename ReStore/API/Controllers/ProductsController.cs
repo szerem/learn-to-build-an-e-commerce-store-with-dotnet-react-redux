@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
-using System.Threading;
 using System.Threading.Tasks;
 using API.Data;
 using API.Entities;
@@ -9,11 +7,10 @@ using API.Extensions;
 using API.RequestHelpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
 
 namespace API.Controllers
 {
-  public class ProductsController : BaseApiController
+    public class ProductsController : BaseApiController
   {
     private readonly StoreContext _context;
 

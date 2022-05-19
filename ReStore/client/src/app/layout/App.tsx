@@ -27,7 +27,6 @@ import Register from '../../features/account/Register';
 import { fetchCurrentUser } from '../../features/account/accountSlice';
 import PrivateRoute from './PrivateRoute';
 import OrdersPage from '../../features/orders/OrdersPage';
-import OrderDetails from '../../features/orders/OrderDetails';
 
 const App = () => {
   // console.log(`App ${new Date().toISOString()} ...`);

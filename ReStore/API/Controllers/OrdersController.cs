@@ -41,12 +41,13 @@ namespace API.Controllers
             .FirstOrDefaultAsync();
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<int>> CreateOrder(CreateOrderDto dto)
         {
             var basket = await _context
             .Baskets
-            .RetriveBasketWithItems(User.Identity.Name)
+            .RetrieveBasketWithItems(User.Identity.Name)
             .FirstOrDefaultAsync();
 
             if (basket is null) return BadRequest(new ProblemDetails { Title = "Could not locate basket" });
