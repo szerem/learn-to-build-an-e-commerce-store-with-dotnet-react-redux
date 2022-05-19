@@ -230,6 +230,7 @@ dotnet ef migrations add PaymentIntentAdded
 dotnet ef database drop
 
 170. Creating a payment service
+
 171. Creating a payments controller
 172. Testing the payment intents using swagger
 173. Adding stripe to the client
