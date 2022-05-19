@@ -231,9 +231,13 @@ dotnet ef database drop
 
 170. Creating a payment service
 171. Creating a payments controller
-
 172. Testing the payment intents using swagger
+https://dashboard.stripe.com/test/payments/
 173. Adding stripe to the client
+https://stripe.com/docs/development
+npm install --save @stripe/react-stripe-js @stripe/stripe-js
+https://dashboard.stripe.com/test/apikeys
+ 
 174. Using stripe payment inputs
 175. Validating the stripe inputs part 1
 176. Validating the stripe inputs part 2

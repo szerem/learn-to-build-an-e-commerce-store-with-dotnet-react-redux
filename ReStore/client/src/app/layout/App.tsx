@@ -17,7 +17,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import ServerError from '../errors/ServerError';
 import NotFound from '../errors/NotFound';
 import BasketPage from '../../features/basket/BasketPage';
-import CheckoutPage from '../../features/checkout/CheckoutPage';
 import Footer from './Footer';
 import LoadingComponents from './LoadingComponents';
 import { fetchBasketAsync } from '../../features/basket/basketSlice';
@@ -27,6 +26,7 @@ import Register from '../../features/account/Register';
 import { fetchCurrentUser } from '../../features/account/accountSlice';
 import PrivateRoute from './PrivateRoute';
 import OrdersPage from '../../features/orders/OrdersPage';
+import CheckoutWrapper from '../../features/checkout/CheckoutWrapper';
 
 const App = () => {
   // console.log(`App ${new Date().toISOString()} ...`);
@@ -80,7 +80,7 @@ const App = () => {
           <Route path="/contact" component={ContactPage} />
           <Route path="/server-error" component={ServerError} />
           <Route path="/basket" component={BasketPage} />
-          <PrivateRoute path="/checkout" component={CheckoutPage} />
+          <PrivateRoute path="/checkout" component={CheckoutWrapper} />
           <PrivateRoute path="/orders" component={OrdersPage} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
