@@ -11,7 +11,7 @@ export const validationSchema = [
     country: yup.string().required('Country is required'),
   }),
   yup.object({
-    basketExists: yup.boolean().oneOf([true], 'Basket cannot be empty'),
+    basketExists: yup.boolean().oneOf([false], 'Basket cannot be empty'),
   }),
   yup.object({
     nameOnCard: yup.string().required('Name on card name is required'),

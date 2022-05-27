@@ -241,9 +241,9 @@ https://dashboard.stripe.com/test/apikeys
 174. Using stripe payment inputs
 175. Validating the stripe inputs part 1
 176. Validating the stripe inputs part 2
-
 177. Adding the payment intent function
 178. Adding the submit payment function
+
 179. Testing card payments
 180. Adding a webhook
 181. User secrets

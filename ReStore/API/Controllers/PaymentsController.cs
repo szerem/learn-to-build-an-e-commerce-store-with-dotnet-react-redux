@@ -10,12 +10,12 @@ using Microsoft.EntityFrameworkCore;
 namespace API.Controllers
 {
     [Authorize]
-    public class PaymentController : BaseApiController
+    public class PaymentsController : BaseApiController
     {
         private readonly PaymentService _paymentService;
         private readonly StoreContext _context;
 
-        public PaymentController(PaymentService paymentService, StoreContext context)
+        public PaymentsController(PaymentService paymentService, StoreContext context)
         {
             _paymentService = paymentService;
             _context = context;

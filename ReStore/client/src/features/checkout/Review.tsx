@@ -9,6 +9,7 @@ import AppHiddenInput from '../../app/components/AppHiddenInput';
 export default function Review() {
   const { basket } = useAppSelector((state) => state.basket);
   const { control } = useFormContext();
+  console.log(!!basket);
   
   return (
     <>

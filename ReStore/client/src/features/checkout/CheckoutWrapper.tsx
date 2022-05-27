@@ -19,13 +19,13 @@ const CheckoutWrapper = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    agent.Paymets.CreatePaymentIntent()
+    agent.Payments.CreatePaymentIntent()
     .then(basket => dispatch(setBasket(basket)))
     .catch(error => console.log(error))
     .finally(() => setLoading(false))
   }, [dispatch]);
 
-  if(loading) return <LoadingComponents message='loading chcekout intent...'/>
+  if(loading) return <LoadingComponents message='loading checkout intent...'/>
 
   return (
     <Elements stripe={stripePromise} options={options}>
